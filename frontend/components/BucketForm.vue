@@ -122,7 +122,7 @@ const formValue = reactive({
 
 const uploadMethodOptions = [
   { label: 'Presigned direct upload', value: 'presigned' },
-  { label: 'FlareDrive proxy upload', value: 'proxy' },
+  { label: 'CloudVault proxy upload', value: 'proxy' },
 ]
 
 const edgeThumbnailPresets = [

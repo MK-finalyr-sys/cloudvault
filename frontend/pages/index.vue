@@ -7,7 +7,7 @@
         NIcon(size='28', color='var(--primary-color)')
           IconCloud
       .flex.flex-col
-        NH2.m-0.text-lg.font-bold(style='line-height: 1.2') {{ site.siteName || 'FlareDrive' }}
+        NH2.m-0.text-lg.font-bold(style='line-height: 1.2') {{ site.siteName || 'CloudVault' }}
         NText(depth='3', style='font-size: 12px') S3-compatible Storage Manager
 
     .actions.flex.items-center.gap-3

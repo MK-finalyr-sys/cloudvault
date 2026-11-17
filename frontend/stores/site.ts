@@ -10,7 +10,7 @@ export type PublicSiteSettings = {
 }
 
 export const useSiteStore = defineStore('site', () => {
-  const siteName = ref('FlareDrive')
+  const siteName = ref('CloudVault')
   const allowRegister = ref(true)
   const randomUploadDir = ref('')
   const batchUploadConcurrency = ref(10)
@@ -38,7 +38,7 @@ export const useSiteStore = defineStore('site', () => {
     pending.value = (async () => {
       try {
         const { data } = await fexios.get<PublicSiteSettings>('/api/site/public-settings')
-        siteName.value = (data?.siteName || '').toString().trim() || 'FlareDrive'
+        siteName.value = (data?.siteName || '').toString().trim() || 'CloudVault'
         allowRegister.value = !!data?.allowRegister
 
         // Normalize random upload dir: strip leading '/', ensure trailing '/', treat '/' as disabled.

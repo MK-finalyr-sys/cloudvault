@@ -20,7 +20,7 @@ site.fetchPublicSettings().catch(() => void 0)
 
 watchEffect(() => {
   if ('document' in globalThis) {
-    const name = site.siteName || 'FlareDrive'
+    const name = site.siteName || 'CloudVault'
     document.title = name
   }
 })

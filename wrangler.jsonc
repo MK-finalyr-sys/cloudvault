@@ -1,5 +1,5 @@
 {
-  "name": "flaredrive",
+  "name": "cloudvault",
   "compatibility_date": "2026-01-14",
   "main": "./backend/index.ts",
   "assets": {
@@ -9,15 +9,15 @@
   "d1_databases": [
     {
       "binding": "D1",
-      "database_name": "flaredrive",
-      "database_id": "f3d07a76-273f-4075-906b-c6292ee4cfb9",
+      "database_name": "cloudvault",
+      "database_id": "REPLACE_WITH_CLOUDVAULT_D1_ID",
       "migrations_dir": "drizzle",
     },
   ],
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "a2c1ad5a6bd84771bb91b8310b6cb49a",
+      "id": "REPLACE_WITH_CLOUDVAULT_KV_ID",
     },
   ],
   "durable_objects": {
@@ -36,6 +36,7 @@
   ],
   "vars": {
     "ALLOW_REGISTER": "false",
+    "SITE_NAME": "CloudVault",
   },
   "observability": {
     "logs": {

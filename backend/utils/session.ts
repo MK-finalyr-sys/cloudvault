@@ -5,7 +5,7 @@ import { cacheDelete, cacheGetJson, cachePutJson } from './cache.js'
 import { isTokenHashRevoked } from './session-revocation.js'
 import { getDb } from './db.js'
 
-const COOKIE_NAME = 'flaredrive_session'
+const COOKIE_NAME = 'cloudvault_session'
 
 const base64UrlEncode = (bytes: Uint8Array) => {
   let binary = ''

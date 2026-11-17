@@ -2,7 +2,7 @@ import { lightTheme, darkTheme } from 'naive-ui'
 
 export const useThemeStore = defineStore('theme', () => {
   const theme = useColorMode({
-    storageKey: 'flaredrive:color-mode',
+    storageKey: 'cloudvault:color-mode',
   })
 
   watch(

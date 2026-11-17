@@ -1,4 +1,4 @@
-# FlareDrive Rev 项目说明
+# CloudVault Rev 项目说明
 
 一个基于 Cloudflare Workers 的云原生 S3-compatible 存储桶管理工具，支持多存储后端（R2、AWS S3、MinIO 等），提供用户注册/登录、桶配置与管理功能。
 
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-const data = ref('Hello, FlareDrive Rev!')
+const data = ref('Hello, CloudVault Rev!')
 </script>
 
 <style lang="scss" scoped>

@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="./public/logos/flaredrive-logo-h.png" width="200" alt="FlareDrive Logo" />
+<img src="/cloudvault-logo.svg" width="200" alt="CloudVault Logo" />
 
-# FlareDrive: REMASTERED
+# CloudVault
 
-[<img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare">](https://deploy.workers.cloudflare.com/?url=https://github.com/project-epb/flaredrive-rev)
+[<img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare">](https://deploy.workers.cloudflare.com/?url=https://github.com/project-epb/cloudvault)
 
 </div>
 
@@ -159,7 +159,7 @@ Production Drizzle (D1 HTTP driver) requires:
 > - Copyright (c) 2022 Siyu Long (before f82ffdc)
 > - Copyright (c) 2025 Dragon Fish (remastered version)
 
-> FlareDrive Logos & mascots
+> CloudVault Logos & mascots
 >
 > - CC BY-SA 4.0
-> - See more: [README](public/logos/README.md)
+> - See more: [README](public/cloudvault-logo.svg)

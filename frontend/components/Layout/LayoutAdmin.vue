@@ -39,7 +39,7 @@ const route = useRoute()
 const router = useRouter()
 
 const { width: windowWidth } = useWindowSize()
-const siderCollapsed = useLocalStorage('flaredrive:admin/sider-collapsed', windowWidth.value < 768)
+const siderCollapsed = useLocalStorage('cloudvault:admin/sider-collapsed', windowWidth.value < 768)
 
 const renderIcon = (icon: Component) => {
   return () => h(NIcon, null, { default: () => h(icon) })

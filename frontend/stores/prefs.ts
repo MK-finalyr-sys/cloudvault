@@ -40,7 +40,7 @@ export type UserPrefsV1 = {
   showTopStickyRail: boolean
 }
 
-const STORAGE_KEY = 'flaredrive:prefs'
+const STORAGE_KEY = 'cloudvault:prefs'
 
 function defaultPrefs(): UserPrefsV1 {
   return {
@@ -74,22 +74,22 @@ export const usePrefsStore = defineStore('prefs', () => {
 
     const migrated: Partial<UserPrefsV1> = {}
 
-    const legacyLayout = readLegacyValue<unknown>('flaredrive:current-layout')
+    const legacyLayout = readLegacyValue<unknown>('cloudvault:current-layout')
     if (isBrowserLayout(legacyLayout)) {
       migrated.browserLayout = legacyLayout
     }
 
-    const legacySticky = readLegacyValue<boolean>('flaredrive:top-sticky-rail/show')
+    const legacySticky = readLegacyValue<boolean>('cloudvault:top-sticky-rail/show')
     if (typeof legacySticky === 'boolean') {
       migrated.showTopStickyRail = legacySticky
     }
 
-    const legacyGallerySortBy = readLegacyValue<unknown>('flaredrive:gallery/sort-by')
+    const legacyGallerySortBy = readLegacyValue<unknown>('cloudvault:gallery/sort-by')
     if (isGallerySortBy(legacyGallerySortBy)) {
       migrated.gallerySortBy = legacyGallerySortBy
     }
 
-    const legacyGallerySortOrder = readLegacyValue<unknown>('flaredrive:gallery/sort-order')
+    const legacyGallerySortOrder = readLegacyValue<unknown>('cloudvault:gallery/sort-order')
     if (isSortOrder(legacyGallerySortOrder)) {
       migrated.gallerySortOrder = legacyGallerySortOrder
     }

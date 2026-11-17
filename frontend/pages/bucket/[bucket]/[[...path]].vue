@@ -82,7 +82,7 @@
       | upload history
     | .
   NAlert(v-if='bucket.checkIsHiddenDir(currentPath)', type='warning', title='Hidden directory', closable, my-4)
-    | This hidden directory is for internal use of the FlareDrive application.
+    | This hidden directory is for internal use of the CloudVault application.
     | It's strongly recommended to not upload or delete files in this directory.
 
   //- file browser
@@ -435,7 +435,7 @@ async function onDownload(item: StorageListObject) {
   const url = bucket.getCDNUrl(item)
   const a = document.createElement('a')
   a.href = url
-  a.download = item.key.split('/').pop() || `FlareDrive_download_${Date.now()}`
+  a.download = item.key.split('/').pop() || `CloudVault_download_${Date.now()}`
   a.click()
   nmessage.success('Download started')
 }

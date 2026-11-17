@@ -195,7 +195,7 @@ export const useBucketStore = defineStore('bucket', () => {
     return getCDNUrl(payload, bucketName)
   }
 
-  const uploadHistory = useLocalStorage<StorageListObject[]>('flaredrive:upload-history', [])
+  const uploadHistory = useLocalStorage<StorageListObject[]>('cloudvault:upload-history', [])
   const uploadHistoryMax = computed(() => getUploadHistoryLimit())
 
   watch(

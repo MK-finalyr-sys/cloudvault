@@ -1,16 +1,16 @@
 <div align="center">
 
-<img src="./public/logos/flaredrive-logo-h.png" width="200" alt="FlareDrive Logo" />
+<img src="/cloudvault-logo.svg" width="200" alt="CloudVault Logo" />
 
-# FlareDrive: REMASTERED
+# CloudVault
 
-[<img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare">](https://deploy.workers.cloudflare.com/?url=https://github.com/project-epb/flaredrive-rev)
+[<img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare">](https://deploy.workers.cloudflare.com/?url=https://github.com/project-epb/cloudvault)
 
 </div>
 
 [English](README.md)
 
-FlareDrive Rev 是一个基于 Cloudflare Workers 的云原生 S3-compatible 存储桶管理工具。
+CloudVault Rev 是一个基于 Cloudflare Workers 的云原生 S3-compatible 存储桶管理工具。
 
 本仓库处于持续重构中，架构草案与迁移进度请参考：
 
@@ -159,7 +159,7 @@ bun run user:create -- --url http://localhost:5880 --email admin@example.com --p
 > - Copyright (c) 2022 Siyu Long (before f82ffdc)
 > - Copyright (c) 2025 Dragon Fish (remastered version)
 
-> FlareDrive Logos & mascots
+> CloudVault Logos & mascots
 >
 > - CC BY-SA 4.0
-> - See more: [README](public/logos/README.md)
+> - See more: [README](public/cloudvault-logo.svg)

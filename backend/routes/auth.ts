@@ -9,7 +9,7 @@ import { readEnvVars } from '../utils/readCtxEnv.js'
 import { getResolvedPublicSiteSettings } from '../utils/site-settings.js'
 import { revokeTokenHash } from '../utils/session-revocation.js'
 
-const COOKIE_NAME = 'flaredrive_session'
+const COOKIE_NAME = 'cloudvault_session'
 const SESSION_MAX_AGE_SEC = 60 * 60 * 24 * 30
 
 const getAdminCreateToken = (ctx: any) => {

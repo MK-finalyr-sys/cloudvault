@@ -20,19 +20,19 @@
   NDivider
 
   NCard.mt-6(title='About')
-    NImage(src='/logos/flaredrive-logo-h.png', alt='FlareDrive Logo', width='200')
-    NP Powered by FlareDrive.
+    NImage(src='/cloudvault-logo.svg', alt='CloudVault Logo', width='200')
+    NP Powered by CloudVault.
     .mt-3.flex.gap-2.flex-wrap
       NText MIT License
       NText(depth='3') ·
-      NA(href='https://github.com/project-epb/flaredrive-rev', target='_blank', rel='noopener noreferrer') GitHub
+      NA(href='https://github.com/project-epb/cloudvault', target='_blank', rel='noopener noreferrer') GitHub
       NText(depth='3') ·
       NText
         | Made with 🐟 by
         |
         NA(href='https://github.com/dragon-fish', target='_blank', rel='noopener noreferrer') Dragon Fish
     NP
-      | FlareDrive logo &amp; mascot
+      | CloudVault logo &amp; mascot
       |
       | ·
       |

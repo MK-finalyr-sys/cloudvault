@@ -82,7 +82,7 @@ const randomUploadDirSetting = (
 })
 
 export const SITE_SETTINGS = {
-  siteName: stringSetting('site.name', 'SITE_NAME', 'FlareDrive'),
+  siteName: stringSetting('site.name', 'SITE_NAME', 'CloudVault'),
   allowRegister: booleanSetting('site.allowRegister', 'ALLOW_REGISTER', true),
   randomUploadDir: randomUploadDirSetting('site.randomUploadDir', 'VITE_RANDOM_UPLOAD_DIR', ''),
   batchUploadConcurrency: intSetting('site.batchUploadConcurrency', 'VITE_BATCH_UPLOAD_CONCURRENCY', 10, {

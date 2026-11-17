@@ -1,7 +1,7 @@
 {
-  "name": "flaredrive",
+  "name": "cloudvault",
   "version": "0.0.1",
-  "description": "CloudFlare R2 storage manager with Pages and Workers.",
+  "description": "CloudVault: S3-compatible object storage manager on Cloudflare Workers",
   "type": "module",
   "private": true,
   "engines": {
@@ -22,14 +22,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/project-epb/flaredrive-rev.git"
+    "url": "git+https://github.com/MK-finalyr-sys/cloudvault.git"
   },
   "author": "dragon-fish",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/project-epb/flaredrive-rev/issues"
-  },
-  "homepage": "https://github.com/project-epb/flaredrive-rev#readme",
+  "homepage": "https://github.com/MK-finalyr-sys/cloudvault",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.971.0",
     "@aws-sdk/s3-request-presigner": "^3.971.0",

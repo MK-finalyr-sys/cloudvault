@@ -32,9 +32,9 @@ export const CDN_BASE_URL = readEnv<string>('VITE_CDN_BASE_URL', '/api/raw/', (v
 })
 /**
  * Internal hidden directory key, for generation thumbnails and so on
- * @example /_$flaredrive$/thumbnails/sha1sum.png
+ * @example /_$cloudvault$/thumbnails/sha1sum.png
  */
-export const FLARE_DRIVE_HIDDEN_KEY: string = '_$flaredrive$'
+export const FLARE_DRIVE_HIDDEN_KEY: string = '_$cloudvault$'
 /**
  * Files uploaded to this directory will be randomly renamed
  * with trailing slash

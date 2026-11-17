@@ -1,4 +1,4 @@
-# 调研：在 FlareDrive Rev 引入 Workers KV 作为“类 Redis 缓存”可行性
+# 调研：在 CloudVault Rev 引入 Workers KV 作为“类 Redis 缓存”可行性
 
 日期：2026-01-20
 

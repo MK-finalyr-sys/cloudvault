@@ -2,7 +2,7 @@ import type { BucketInfo } from '@/models/BucketClient'
 
 export const useNavigationStore = defineStore('navigation', () => {
   const router = useRouter()
-  const lastRoute = useLocalStorage('flaredrive:last-route', '/')
+  const lastRoute = useLocalStorage('cloudvault:last-route', '/')
   const didInitialNavigation = ref(false)
 
   /**
