@@ -1,0 +1,75 @@
+name: Deploy CloudVault to Cloudflare
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/deploy-cloudflare.yml'
+permissions:
+  contents: read
+concurrency:
+  group: cloudvault-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Cloudflare secrets
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "::error::Missing CLOUDFLARE_API_TOKEN"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "::error::Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Provision D1 and KV and configure Worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .cloudvault
+          bunx wrangler d1 list --json > .cloudvault/d1.json
+          python3 - <<'PY'
+          import json,os,subprocess
+          databases=json.load(open(".cloudvault/d1.json"))
+          db=next((x for x in databases if x.get("name")=="cloudvault"),None)
+          if not db:
+              out=subprocess.run(["bunx","wrangler","d1","create","cloudvault","--json"],capture_output=True,text=True)
+              if out.returncode: raise RuntimeError("D1 creation failed: "+out.stderr[-2000:])
+              try: db=json.loads(out.stdout)
+              except ValueError: raise RuntimeError("D1 create did not return JSON")
+          dbid=db.get("uuid") or db.get("database_id") or db.get("id")
+          if not dbid: raise RuntimeError("Missing D1 database ID")
+          print("D1 configured")
+          os.environ["CLOUDVAULT_D1_ID"]=dbid
+          kv=subprocess.run(["bunx","wrangler","kv","namespace","list"],capture_output=True,text=True)
+          if kv.returncode: raise RuntimeError("KV list failed: "+kv.stderr[-2000:])
+          spaces=json.loads(kv.stdout)
+          ns=next((x for x in spaces if x.get("title")=="cloudvault-kv"),None)
+          if not ns:
+              created=subprocess.run(["bunx","wrangler","kv","namespace","create","cloudvault-kv"],capture_output=True,text=True)
+              if created.returncode: raise RuntimeError("KV create failed: "+created.stderr[-2000:])
+              import re
+              match=re.search(r'\bid\s*=\s*"([^"]+)"',created.stdout)
+              if not match: raise RuntimeError("Unable to parse KV namespace ID")
+              kvid=match.group(1)
+          else: kvid=ns["id"]
+          p="wrangler.jsonc"
+          s=open(p).read().replace("REPLACE_WITH_CLOUDVAULT_D1_ID",dbid).replace("REPLACE_WITH_CLOUDVAULT_KV_ID",kvid)
+          if "REPLACE_WITH_CLOUDVAULT" in s: raise RuntimeError("Unresolved resource placeholders")
+          open(p,"w").write(s)
+          PY
+      - name: Apply production D1 migrations
+        run: bunx wrangler d1 migrations apply D1 --remote
+      - name: Build CloudVault
+        run: bun run build
+      - name: Deploy Worker and SPA
+        run: bun run deploy
+      - name: Show deployment status
+        run: echo "CloudVault Worker deployment command completed. Check the Deploy Worker step for its workers.dev URL."
