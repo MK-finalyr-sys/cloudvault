@@ -2,7 +2,7 @@
 """Prepare a licensed, rebranded CloudVault distribution from the upstream source."""
 from pathlib import Path
 import json, re, shutil
-root=Path(__file__).resolve().parent
+root=Path(__file__).resolve().parent.parent
 replacements=[("FlareDrive: REMASTERED","CloudVault"),("FlareDrive","CloudVault"),("flaredrive-rev","cloudvault"),("flaredrive","cloudvault"),("drive.epb.wiki","cloudvault.example")]
 extensions={".ts",".tsx",".vue",".html",".json",".jsonc",".md",".css",".scss",".webmanifest"}
 excluded={"LICENSE","bun.lock","bun.lockb","package-lock.json"}
