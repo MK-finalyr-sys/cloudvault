@@ -23,6 +23,34 @@ jobs:
         run: |
           test -n "$CLOUDFLARE_API_TOKEN" || { echo "::error::Missing CLOUDFLARE_API_TOKEN"; exit 1; }
           test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "::error::Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+      - name: Verify Cloudflare token and account access
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,urllib.request,urllib.error,sys
+          token=os.environ["CLOUDFLARE_API_TOKEN"].strip()
+          account=os.environ["CLOUDFLARE_ACCOUNT_ID"].strip()
+          headers={"Authorization":"Bearer "+token,"Accept":"application/json"}
+          def check(label,url):
+              req=urllib.request.Request(url,headers=headers)
+              try:
+                  with urllib.request.urlopen(req,timeout=20) as response:
+                      data=json.load(response)
+              except urllib.error.HTTPError as e:
+                  try:
+                      body=json.load(e)
+                      details="; ".join(str(x.get("code"))+": "+str(x.get("message")) for x in body.get("errors",[]))
+                  except Exception: details="HTTP "+str(e.code)
+                  print("::error::"+label+" failed (HTTP "+str(e.code)+"): "+details)
+                  sys.exit(1)
+              if not data.get("success",False):
+                  print("::error::"+label+" rejected: "+str(data.get("errors",[])))
+                  sys.exit(1)
+              print(label+" OK")
+          check("Token verification","https://api.cloudflare.com/client/v4/user/tokens/verify")
+          check("D1 account access","https://api.cloudflare.com/client/v4/accounts/"+account+"/d1/database")
+          PY
       - uses: oven-sh/setup-bun@v2
       - uses: actions/setup-node@v4
         with:
